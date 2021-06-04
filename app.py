@@ -80,8 +80,7 @@ def profile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        return render_template("profile.html", username=username)
-    
+        return render_template("profile.html", username=username)   
     return redirect(url_for("login"))
 
 @app.route("/logout")
@@ -90,6 +89,12 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add_task")
+def add_task():
+    return render_template("add_task.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
